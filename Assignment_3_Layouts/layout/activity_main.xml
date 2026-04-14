@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F2F5"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="@string/app_name"
+            app:titleTextColor="@color/white" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- 1. Social Media Post (ConstraintLayout) -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_1"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/desc_1"
+                android:textColor="@color/text_grey"
+                android:textSize="14sp" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="12dp">
+                    <ImageView
+                        android:id="@+id/post_user_avatar"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="12dp"
+                        android:src="@android:drawable/ic_menu_myplaces"
+                        android:contentDescription="@string/avatar_desc"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/post_username_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="@string/post_username"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@id/post_location_tv"
+                        app:layout_constraintStart_toEndOf="@id/post_user_avatar"
+                        app:layout_constraintTop_toTopOf="@id/post_user_avatar"
+                        app:layout_constraintVertical_chainStyle="packed" />
+                    <TextView
+                        android:id="@+id/post_location_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/post_location"
+                        android:textSize="12sp"
+                        android:textColor="@color/text_grey"
+                        app:layout_constraintBottom_toBottomOf="@id/post_user_avatar"
+                        app:layout_constraintStart_toStartOf="@id/post_username_tv"
+                        app:layout_constraintTop_toBottomOf="@id/post_username_tv" />
+                    <View
+                        android:id="@+id/post_image_placeholder"
+                        android:layout_width="0dp"
+                        android:layout_height="180dp"
+                        android:layout_marginTop="12dp"
+                        android:background="#E4E6EB"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/post_user_avatar" />
+                    <ImageButton
+                        android:id="@+id/btn_like"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="8dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@android:drawable/btn_star_big_off"
+                        android:contentDescription="@string/like_btn_desc"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/post_image_placeholder" />
+                    <ImageButton
+                        android:id="@+id/btn_comment"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="8dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@android:drawable/ic_menu_send"
+                        android:contentDescription="Comment"
+                        app:layout_constraintStart_toEndOf="@id/btn_like"
+                        app:layout_constraintTop_toBottomOf="@id/post_image_placeholder" />
+                    <TextView
+                        android:id="@+id/likes_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="@string/likes_0"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/btn_like"
+                        app:layout_constraintStart_toEndOf="@id/btn_comment"
+                        app:layout_constraintTop_toTopOf="@id/btn_like" />
+                    <TextView
+                        android:id="@+id/post_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="12dp"
+                        android:text="2h ago"
+                        android:textSize="12sp"
+                        android:textColor="@color/text_grey"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/post_user_avatar" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="12dp"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/post_caption"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/btn_like" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- 2. Shopping Cart (TableLayout) -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/title_2"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/desc_2"
+                android:textColor="@color/text_grey"
+                android:textSize="14sp" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:stretchColumns="0">
+                        <TableRow android:paddingVertical="8dp">
+                            <TextView android:text="@string/item_name" android:textStyle="bold" android:textColor="@color/black"/>
+                            <TextView android:text="@string/item_price" android:layout_marginHorizontal="16dp" android:textStyle="bold" android:textColor="@color/black"/>
+                            <TextView android:text="@string/item_qty" android:textStyle="bold" android:textColor="@color/black"/>
+                        </TableRow>
+                        <TableRow android:paddingVertical="8dp">
+                            <TextView android:text="@string/laptop_name" android:textColor="@color/black"/>
+                            <TextView android:text="@string/laptop_price" android:layout_marginHorizontal="16dp" android:textColor="@color/black"/>
+                            <EditText
+                                android:id="@+id/qty_item1"
+                                android:layout_width="60dp"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
+                                android:text="1"
+                                android:hint="@string/qty_hint"
+                                android:autofillHints="none"
+                                android:textAlignment="center"/>
+                        </TableRow>
+                        <TableRow android:paddingVertical="8dp">
+                            <TextView android:text="@string/mouse_name" android:textColor="@color/black"/>
+                            <TextView android:text="@string/mouse_price" android:layout_marginHorizontal="16dp" android:textColor="@color/black"/>
+                            <EditText
+                                android:id="@+id/qty_item2"
+                                android:layout_width="60dp"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
+                                android:text="1"
+                                android:hint="@string/qty_hint"
+                                android:autofillHints="none"
+                                android:textAlignment="center"/>
+                        </TableRow>
+                    </TableLayout>
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#E4E6EB" android:layout_marginVertical="12dp"/>
+                    <TextView
+                        android:id="@+id/cart_total_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:text="@string/total_default"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/blue_primary"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- 3. Music Player (RelativeLayout) -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/title_3"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/desc_3"
+                android:textColor="@color/text_grey"
+                android:textSize="14sp" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp">
+                    <ImageView
+                        android:id="@+id/music_art"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@android:drawable/ic_media_play"
+                        android:background="#E4E6EB"
+                        android:padding="12dp"
+                        android:contentDescription="@string/music_art_desc"/>
+                    <TextView
+                        android:id="@+id/song_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@id/music_art"
+                        android:layout_marginStart="16dp"
+                        android:layout_centerVertical="false"
+                        android:text="@string/song_title"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"/>
+                    <SeekBar
+                        android:id="@+id/music_seek_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/music_art"
+                        android:layout_marginTop="20dp"
+                        android:max="100"
+                        android:progressTint="@color/blue_primary"
+                        android:thumbTint="@color/blue_primary"/>
+                    <RelativeLayout
+                        android:id="@+id/music_controls"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/music_seek_bar"
+                        android:layout_marginTop="8dp">
+                        <ImageButton
+                            android:id="@+id/btn_prev"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_toStartOf="@id/btn_play_pause"
+                            android:layout_marginEnd="16dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:src="@android:drawable/ic_media_previous"
+                            android:contentDescription="Previous" />
+                        <ImageButton
+                            android:id="@+id/btn_play_pause"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:layout_centerHorizontal="true"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:src="@android:drawable/ic_media_pause"
+                            android:contentDescription="@string/play_pause_desc"
+                            app:tint="@color/blue_primary" />
+                        <ImageButton
+                            android:id="@+id/btn_next"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_toEndOf="@id/btn_play_pause"
+                            android:layout_marginStart="16dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:src="@android:drawable/ic_media_next"
+                            android:contentDescription="Next" />
+                    </RelativeLayout>
+                    <TextView
+                        android:id="@+id/music_time_elapsed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/music_seek_bar"
+                        android:layout_alignParentStart="true"
+                        android:text="00:00"
+                        android:textSize="12sp" />
+                    <TextView
+                        android:id="@+id/music_time_total"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/music_seek_bar"
+                        android:layout_alignParentEnd="true"
+                        android:text="03:45"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- 4. Dashboard (GridLayout) -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/title_4"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/desc_4"
+                android:textColor="@color/text_grey"
+                android:textSize="14sp" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="32dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="2"
+                    android:padding="8dp">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="110dp"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="8dp"
+                        android:background="@color/grid_pink_1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="8dp">
+                        <TextView
+                            android:id="@+id/cpu_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/cpu_default"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="110dp"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="8dp"
+                        android:background="@color/grid_pink_2"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="8dp">
+                        <TextView
+                            android:id="@+id/ram_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/ram_default"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="110dp"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="8dp"
+                        android:background="@color/grid_purple_1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="8dp">
+                        <TextView
+                            android:id="@+id/net_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/net_default"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="110dp"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="8dp"
+                        android:background="@color/grid_purple_2"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="8dp">
+                        <TextView
+                            android:id="@+id/temp_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/temp_default"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                </GridLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="24dp"
+        android:src="@android:drawable/ic_dialog_info"
+        app:backgroundTint="@color/blue_primary"
+        app:tint="@color/white"
+        android:contentDescription="@null" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
