@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_main">
+
+    <!-- HEADER -->
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="32dp"
+        android:paddingBottom="16dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:text="Code Notes"
+                android:textColor="@color/text_primary"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/noteCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text=""
+                android:textColor="#5C608A"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btnFilter"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/chip_bg"
+                android:backgroundTint="@color/bg_surface"
+                android:src="@drawable/ic_filter"
+                android:padding="10dp"
+                app:tint="@color/text_secondary"
+                android:contentDescription="Filter" />
+
+            <ImageButton
+                android:id="@+id/btnEdit"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:background="@drawable/chip_bg"
+                android:backgroundTint="@color/bg_surface"
+                android:src="@android:drawable/ic_menu_edit"
+                android:padding="10dp"
+                app:tint="@color/text_secondary"
+                android:contentDescription="Edit" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!-- SEARCH BAR -->
+    <RelativeLayout
+        android:id="@+id/searchContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header"
+        android:layout_marginHorizontal="24dp"
+        android:background="@drawable/search_bg"
+        android:backgroundTint="@color/bg_search"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp">
+
+        <ImageView
+            android:id="@+id/ivSearchIcon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:src="@android:drawable/ic_menu_search"
+            app:tint="@color/text_secondary" />
+
+        <EditText
+            android:id="@+id/searchBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="12dp"
+            android:layout_toEndOf="@id/ivSearchIcon"
+            android:background="@null"
+            android:hint="Search notes by title or content..."
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
+            android:textSize="14sp"
+            android:inputType="text"
+            android:autofillHints="none" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/searchDivider"
+        android:layout_below="@id/searchContainer"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/bg_surface"/>
+
+    <!-- CATEGORY CHIPS -->
+    <HorizontalScrollView
+        android:id="@+id/chipScroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/searchDivider"
+        android:layout_marginTop="20dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/chipContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="24dp">
+
+            <TextView
+                style="@style/chip"
+                android:background="@drawable/chip_bg_selected"
+                android:backgroundTint="@color/accent_purple"
+                android:text="All"
+                android:textColor="@color/bg_main"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/chip"
+                android:backgroundTint="@color/bg_surface"
+                android:text="● JavaScript"
+                android:textColor="@color/lang_js" />
+
+            <TextView
+                style="@style/chip"
+                android:backgroundTint="@color/bg_surface"
+                android:text="● TypeScript"
+                android:textColor="@color/lang_ts" />
+
+            <TextView
+                style="@style/chip"
+                android:backgroundTint="@color/bg_surface"
+                android:text="● Python"
+                android:textColor="@color/lang_python" />
+
+            <TextView
+                style="@style/chip"
+                android:backgroundTint="@color/bg_surface"
+                android:text="● Java"
+                android:textColor="@color/lang_java" />
+
+            <TextView
+                style="@style/chip"
+                android:backgroundTint="@color/bg_surface"
+                android:text="● C++"
+                android:textColor="#00599C" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <View
+        android:id="@+id/chipDivider"
+        android:layout_below="@id/chipScroll"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/bg_surface"/>
+
+    <!-- FRAGMENT CONTAINER -->
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_nav"
+        android:visibility="gone" />
+
+    <!-- RECYCLER VIEW -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_nav"
+        android:layout_below="@id/chipDivider"
+        android:layout_marginTop="16dp"
+        android:paddingHorizontal="14dp" />
+
+    <!-- EMPTY STATE -->
+    <TextView
+        android:id="@+id/emptyView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_nav"
+        android:layout_below="@id/chipDivider"
+        android:gravity="center"
+        android:text=""
+        android:textColor="#5C608A"
+        android:textSize="14sp"
+        android:visibility="gone" />
+
+    <!-- FLOATING ACTION BUTTON -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bottom_nav"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:src="@android:drawable/ic_input_add"
+        app:backgroundTint="@color/accent_purple"
+        app:elevation="8dp"
+        app:fabSize="normal"
+        app:tint="@color/bg_main"
+        android:contentDescription="Add Note" />
+
+    <!-- BOTTOM NAVIGATION -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/bg_surface"
+        app:elevation="8dp"
+        app:itemIconSize="24dp"
+        app:itemIconTint="@color/nav_selector"
+        app:itemTextColor="@color/nav_selector"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_menu" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@id/bottom_nav"
+        android:background="@color/bg_surface" />
+
+</RelativeLayout>
